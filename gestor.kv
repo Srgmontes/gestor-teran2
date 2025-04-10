@@ -1,0 +1,74 @@
+<DocumentManager>:
+    orientation: "vertical"
+    spacing: 15
+    padding: 15
+
+    MDBoxLayout:
+        orientation: "horizontal"
+        spacing: 15
+        size_hint_y: None
+        height: 150
+
+        MDCard:
+            size_hint: None, None
+            size: 120, 120
+            radius: [60]
+            elevation: 4
+            FitImage:
+                source: "foto_richard.jpg"
+                radius: [60]
+                allow_stretch: True
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 5
+
+            MDLabel:
+                text: "Richard Vladimir Terán Abreu"
+                font_style: "H6"
+
+            MDLabel:
+                text: "Fecha de nacimiento: 01/01/1990"
+                theme_text_color: "Secondary"
+
+            MDLabel:
+                text: "Dirección: Caracas, Venezuela"
+                theme_text_color: "Secondary"
+
+    MDLabel:
+        text: "📂 Documentos personales"
+        halign: "left"
+        font_style: "Subtitle1"
+        theme_text_color: "Primary"
+
+    ScrollView:
+        MDBoxLayout:
+            id: doc_list
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: 5
+            padding: 10
+
+    MDLabel:
+        text: root.mensaje
+        markup: True
+        halign: "center"
+        theme_text_color: "Secondary"
+        size_hint_y: None
+        height: 30
+
+    title: "Seleccionar nuevo archivo"
+    size_hint: 0.9, 0.9
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            on_selection: root.seleccionar(filechooser.path, filechooser.selection)
+        MDRaisedButton:
+            text: "Cancelar"
+            size_hint_y: None
+            height: 40
+            on_press: root.dismiss()
